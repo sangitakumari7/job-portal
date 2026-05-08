@@ -1,13 +1,13 @@
 import React, { useContext, useRef, useState } from 'react'
 import { RxCross1 } from "react-icons/rx";
-import { userDataContext } from '../context/userContext';
+import { UserDataContext } from '../context/UserContext'
 import dp from "../assets/dp.webp"
 import { FiPlus } from "react-icons/fi";
 import { FiCamera } from "react-icons/fi";
 import axios from 'axios';
 import { authDataContext } from '../context/AuthContext';
 function EditProfile() {
-  let { edit, setEdit, userData, setUserData ,edit2,setEdit2} = useContext(userDataContext)
+let { edit, setEdit, userData, setUserData, edit2, setEdit2 } = useContext(UserDataContext)
   let {serverUrl}=useContext(authDataContext)
   let [firstName,setFirstName]=useState(userData.firstName || "")
   let [lastName,setLastName]=useState(userData.lastName || "")

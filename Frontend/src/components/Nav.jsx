@@ -5,13 +5,13 @@ import { TiHome } from "react-icons/ti";
 import { FaUserGroup } from "react-icons/fa6";
 import { IoNotificationsSharp } from "react-icons/io5";
 import dp from "../assets/dp.webp"
-import { userDataContext } from '../context/userContext';
+import { UserDataContext } from '../context/UserContext'
 import { authDataContext } from '../context/AuthContext';
 import axios from 'axios';
 import { Navigate, useNavigate } from 'react-router-dom';
 function Nav() {
     let [activeSearch,setActiveSearch]=useState(false)
-    let {userData,setUserData,handleGetProfile}=useContext(userDataContext)
+   let {userData,setUserData,handleGetProfile}=useContext(UserDataContext)
     let [showPopup,setShowPopup]=useState(false)
     let navigate=useNavigate()
 let {serverUrl}=useContext(authDataContext)
