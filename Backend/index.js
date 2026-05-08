@@ -17,12 +17,12 @@ let server = http.createServer(app)
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://bespoke-genie-e75b1a.netlify.app"  // ← added
+  "https://job-portal-1-jj5r.onrender.com"
 ]
 
 export const io = new Server(server, {
   cors: {
-    origin: allowedOrigins,   
+    origin: allowedOrigins,
     credentials: true
   }
 })
@@ -30,38 +30,37 @@ export const io = new Server(server, {
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-  origin: allowedOrigins,  
+  origin: allowedOrigins,
   credentials: true
 }))
 
+let port = process.env.PORT || 5000
 
-let port=process.env.PORT || 5000
-app.use("/api/auth",authRouter)
-app.use("/api/user",userRouter)
-app.use("/api/post",postRouter)
-app.use("/api/connection",connectionRouter)
-app.use("/api/notification",notificationRouter)
-export const userSocketMap=new Map()
-io.on("connection",(socket)=>{
+app.use("/api/auth", authRouter)
+app.use("/api/user", userRouter)
+app.use("/api/post", postRouter)
+app.use("/api/connection", connectionRouter)
+app.use("/api/notification", notificationRouter)
 
-   socket.on("register",(userId)=>{
-    userSocketMap.set(userId,socket.id)
- console.log(userSocketMap)
-   })
-   socket.on("disconnect",(socket)=>{
+export const userSocketMap = new Map()
+
+io.on("connection", (socket) => {
+  socket.on("register", (userId) => {
+    userSocketMap.set(userId, socket.id)
+    console.log(userSocketMap)
+  })
+
+  socket.on("disconnect", () => {
     for (let [key, value] of userSocketMap.entries()) {
-        if (value === socket.id) {
-            userSocketMap.delete(key);
-        }
+      if (value === socket.id) {
+        userSocketMap.delete(key)
+      }
     }
-    console.log("User disconnected:", socket.id);
-});
-   }) 
-
-
-server.listen(port,()=>{
-    connectDb()
-    console.log("server started");
+    console.log("User disconnected:", socket.id)
+  })
 })
 
-
+server.listen(port, () => {
+  connectDb()
+  console.log("server started")
+})
