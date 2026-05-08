@@ -19,8 +19,16 @@ let server = http.createServer(app)
 const allowedOrigins = [
   "http://localhost:5173",
   "https://job-portal-one-umber.vercel.app",
-  "https://job-portal-backend-mg9x.onrender.com"
+  // ❌ removed backend URL — it should never be in allowedOrigins
 ]
+
+// ✅ cors BEFORE everything else
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true
+}))
+app.use(express.json())
+app.use(cookieParser())
 
 export const io = new Server(server, {
   cors: {
@@ -28,13 +36,6 @@ export const io = new Server(server, {
     credentials: true
   }
 })
-
-app.use(express.json())
-app.use(cookieParser())
-app.use(cors({
-  origin: allowedOrigins,
-  credentials: true
-}))
 
 let port = process.env.PORT || 5000
 

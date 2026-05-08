@@ -3,7 +3,7 @@ import React, { createContext } from 'react'
 export const authDataContext = createContext()
 
 function AuthContext({ children }) {
-  const serverUrl = import.meta.env.VITE_SERVER_URL || "http://localhost:8000"
+  const serverUrl = "https://job-portal-backend-mg9x.onrender.com"
 
   let value = {
     serverUrl
