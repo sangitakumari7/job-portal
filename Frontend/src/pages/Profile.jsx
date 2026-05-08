@@ -3,7 +3,7 @@ import Nav from '../components/Nav'
 import dp from "../assets/dp.webp"
 import { FiPlus } from "react-icons/fi";
 import { FiCamera } from "react-icons/fi";
-import { userDataContext } from '../context/userContext';
+import { UserDataContext } from '../context/UserContext';
 import { HiPencil } from "react-icons/hi2";
 import { authDataContext } from '../context/AuthContext';
 import axios from 'axios';
@@ -12,7 +12,7 @@ import Post from '../components/Post';
 import ConnectionButton from '../components/ConnectionButton';
 function Profile() {
 
-    let {userData,setuserData,edit,setEdit,postData,setPostData,profileData,setProfileData}=useContext(userDataContext)
+let {userData, setUserData, edit, setEdit, postData, setPostData, profileData, setProfileData} = useContext(UserDataContext)
     let [profilePost,setProfilePost]=useState([])
     
 let {serverUrl}=useContext(authDataContext)

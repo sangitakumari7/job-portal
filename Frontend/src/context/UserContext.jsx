@@ -2,7 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react'
 import { authDataContext } from './AuthContext'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-export const userDataContext=createContext()
+export const UserDataContext=createContext()
 
 function UserContext({children}) {
 let [userData,setUserData]=useState(null)
@@ -60,9 +60,9 @@ getCurrentUser();
     }
   return (
     <div>
-        <userDataContext.Provider value={value}>
-      {children}
-      </userDataContext.Provider>
+        <UserDataContext.Provider value={value}>
+  {children}
+</UserDataContext.Provider>
     </div>
   )
 }

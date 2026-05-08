@@ -3,11 +3,11 @@ import logo from "../assets/logo.svg";
 import { useNavigate } from "react-router-dom";
 import { authDataContext } from "../context/AuthContext";
 import axios from "axios";
-import { userDataContext } from "../context/userContext";
+import { UserDataContext } from '../context/UserContext'
 function Login() {
   let [show, setShow] = useState(false);
   let { serverUrl } = useContext(authDataContext);
-  let { userData, setUserData } = useContext(userDataContext);
+let { userData, setUserData } = useContext(UserDataContext);
   let navigate = useNavigate();
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");

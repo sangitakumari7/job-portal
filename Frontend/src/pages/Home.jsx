@@ -3,7 +3,7 @@ import Nav from '../components/Nav'
 import dp from "../assets/dp.webp"
 import { FiPlus } from "react-icons/fi";
 import { FiCamera } from "react-icons/fi";
-import { userDataContext } from '../context/userContext';
+import { UserDataContext } from '../context/UserContext'
 import { HiPencil } from "react-icons/hi2";
 import EditProfile from '../components/EditProfile';
 import { RxCross1 } from "react-icons/rx";
@@ -13,7 +13,7 @@ import { authDataContext } from '../context/AuthContext';
 import Post from '../components/Post';
 function Home() {
 
-  let {userData,setUserData,edit,setEdit,postData,setPostData,getPost,handleGetProfile}=useContext(userDataContext)
+let {userData,setUserData,edit,setEdit,postData,setPostData,getPost,handleGetProfile}=useContext(UserDataContext)
 let {serverUrl}=useContext(authDataContext)
   let [frontendImage,setFrontendImage]=useState("")
   let [backendImage,setBackendImage]=useState("")
@@ -42,7 +42,7 @@ console.log(result)
 setPosting(false)
 setUploadPost(false)
   } catch (error) {
-    setPostng(false)
+    setPosting(false)
     console.log(error);
     
   }

@@ -4,12 +4,12 @@ import { authDataContext } from '../context/AuthContext'
 import axios from 'axios'
 import { RxCross1 } from "react-icons/rx";
 import dp from "../assets/dp.webp"
-import { userDataContext } from '../context/userContext';
+import { UserDataContext } from '../context/UserContext'
 function Notification() {
 
 let {serverUrl}=useContext(authDataContext)
 let [notificationData,setNotificationData]=useState([])
-let {userData}=useContext(userDataContext)
+let {userData}=useContext(UserDataContext)
 const handleGetNotification=async ()=>{
     try {
         let result=await axios.get(serverUrl+"/api/notification/get",{withCredentials:true})
