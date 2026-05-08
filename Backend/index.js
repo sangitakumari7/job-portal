@@ -10,14 +10,19 @@ import connectionRouter from "./routes/connection.routes.js"
 import http from "http"
 import { Server } from "socket.io"
 import notificationRouter from "./routes/notification.routes.js"
+import path from "path"
+import { fileURLToPath } from "url"
 
 dotenv.config()
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
 let app = express()
 let server = http.createServer(app)
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://job-portal-1-jj5r.onrender.com"
+  "https://job-portal-backend-mg9x.onrender.com"
 ]
 
 export const io = new Server(server, {
@@ -41,6 +46,11 @@ app.use("/api/user", userRouter)
 app.use("/api/post", postRouter)
 app.use("/api/connection", connectionRouter)
 app.use("/api/notification", notificationRouter)
+
+app.use(express.static(path.join(__dirname, "../frontend/dist")))
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/dist", "index.html"))
+})
 
 export const userSocketMap = new Map()
 
