@@ -10,21 +10,31 @@ import connectionRouter from "./routes/connection.routes.js"
 import http from "http"
 import { Server } from "socket.io"
 import notificationRouter from "./routes/notification.routes.js"
+
 dotenv.config()
-let app=express()
-let server=http.createServer(app)
-export const io=new Server(server,{
-    cors:({
-        origin:"http://localhost:5173",
-        credentials:true
-    })
+let app = express()
+let server = http.createServer(app)
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://bespoke-genie-e75b1a.netlify.app"  // ← added
+]
+
+export const io = new Server(server, {
+  cors: {
+    origin: allowedOrigins,   
+    credentials: true
+  }
 })
+
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-    origin:"http://localhost:5173",
-    credentials:true
+  origin: allowedOrigins,  
+  credentials: true
 }))
+
+
 let port=process.env.PORT || 5000
 app.use("/api/auth",authRouter)
 app.use("/api/user",userRouter)
