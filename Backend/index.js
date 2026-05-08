@@ -22,6 +22,7 @@ let server = http.createServer(app)
 
 const allowedOrigins = [
   "http://localhost:5173",
+  "https://job-portal-one-umber.vercel.app",
   "https://job-portal-backend-mg9x.onrender.com"
 ]
 
