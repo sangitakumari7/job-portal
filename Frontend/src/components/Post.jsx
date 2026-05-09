@@ -19,24 +19,22 @@ function Post({ id, author, like, comment, description, image, createdAt }) {
   let [comments, setComments] = useState(comment)
   let [showComment, setShowComment] = useState(false)
 
-  // ✅ Create socket once, store in ref
   const socketRef = useRef(null)
+
   useEffect(() => {
     socketRef.current = io(serverUrl)
-
     socketRef.current.on("likeUpdated", ({ postId, likes }) => {
       if (postId == id) setLikes(likes)
     })
     socketRef.current.on("commentAdded", ({ postId, comm }) => {
       if (postId == id) setComments(comm)
     })
-
     return () => {
       socketRef.current.off("likeUpdated")
       socketRef.current.off("commentAdded")
-      socketRef.current.disconnect() // ✅ properly close
+      socketRef.current.disconnect()
     }
-  }, [id]) // ✅ runs once per post
+  }, [id])
 
   const handleLike = async () => {
     try {
@@ -60,6 +58,8 @@ function Post({ id, author, like, comment, description, image, createdAt }) {
       console.log(error)
     }
   }
+
+  if (!author) return null
 
   return (
     <div className="w-full min-h-[150px] flex flex-col gap-[10px] bg-white rounded-lg shadow-lg p-[20px]">
@@ -126,9 +126,9 @@ function Post({ id, author, like, comment, description, image, createdAt }) {
                 <div key={com._id} className='flex flex-col gap-[10px] border-b-2 p-[20px] border-b-gray-300'>
                   <div className="w-full flex justify-start items-center gap-[10px]">
                     <div className='w-[40px] h-[40px] rounded-full overflow-hidden flex items-center justify-center cursor-pointer'>
-                      <img src={com.user.profileImage || dp} alt="" className='h-full' />
+                      <img src={com.user?.profileImage || dp} alt="" className='h-full' />
                     </div>
-                    <div className='text-[16px] font-semibold'>{`${com.user.firstName} ${com.user.lastName}`}</div>
+                    <div className='text-[16px] font-semibold'>{com.user ? `${com.user.firstName} ${com.user.lastName}` : "Deleted User"}</div>
                   </div>
                   <div className='pl-[50px]'>{com.content}</div>
                 </div>

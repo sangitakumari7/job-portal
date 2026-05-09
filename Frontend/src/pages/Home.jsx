@@ -146,15 +146,15 @@ getPost()
        <div className='w-full lg:w-[25%] min-h-[200px] bg-[white] shadow-lg hidden lg:flex flex-col p-[20px]'>
         <h1 className='text-[20px] text-gray-600 font-semibold'>Suggested Users</h1>
          {suggestedUser.length>0 && <div className='flex flex-col gap-[10px]'>
-{suggestedUser.map((su)=>(
-  <div className='flex items-center gap-[10px] mt-[10px] cursor-pointer hover:bg-gray-200 rounded-lg p-[5px]' onClick={()=>handleGetProfile(su.userName)}>
-  <div className='w-[40px] h-[40px] rounded-full overflow-hidden'>
-            <img src={su.profileImage || dp} alt="" className='w-full h-full'/>
-        </div>
-        <div>
-        <div className='text-[19px] font-semibold text-gray-700'>{`${su.firstName} ${su.lastName}`}</div>
-        <div className='text-[12px] font-semibold text-gray-700'>{su.headline}</div>
-        </div>
+{suggestedUser.map((su) => (
+  <div key={su._id} className='flex items-center gap-[10px] mt-[10px] cursor-pointer hover:bg-gray-200 rounded-lg p-[5px]' onClick={() => handleGetProfile(su.userName)}>
+    <div className='w-[40px] h-[40px] rounded-full overflow-hidden'>
+      <img src={su.profileImage || dp} alt="" className='w-full h-full' />
+    </div>
+    <div>
+      <div className='text-[19px] font-semibold text-gray-700'>{`${su.firstName} ${su.lastName}`}</div>
+      <div className='text-[12px] font-semibold text-gray-700'>{su.headline}</div>
+    </div>
   </div>
 ))}
           </div>}
