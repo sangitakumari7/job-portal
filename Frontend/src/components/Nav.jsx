@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import logo2 from "../assets/logo2.png"
+import logo1 from "../assets/logo1.png"
 import { IoSearchSharp } from "react-icons/io5";
 import { TiHome } from "react-icons/ti";
 import { FaUserGroup } from "react-icons/fa6";
@@ -53,7 +53,7 @@ useEffect(()=>{
         setActiveSearch(false)
         navigate("/")
       }}>
-        <img src={logo2} alt="" className='w-[50px]'/>
+        <img src={logo1} alt="" className='w-[50px]'/>
       </div>
       {!activeSearch && <div><IoSearchSharp className='w-[23px] h-[23px] text-gray-600 lg:hidden' onClick={()=>setActiveSearch(true)}/></div>}
       {searchData.length>0 &&   <div className='absolute top-[90px] h-[500px] left-[0px] lg:left-[20px] shadow-lg w-[100%] lg:w-[700px] bg-white flex flex-col gap-[20px] p-[20px] overflow-auto'>

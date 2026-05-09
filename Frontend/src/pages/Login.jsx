@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import logo from "../assets/logo.svg";
+import logo from "../assets/logo.png";
 import { useNavigate } from "react-router-dom";
 import { authDataContext } from "../context/AuthContext";
 import axios from "axios";
@@ -39,11 +39,11 @@ let { userData, setUserData } = useContext(UserDataContext);
   };
   return (
     <div className="w-full h-screen bg-[white] flex flex-col items-center justify-start gap-[10px]">
-      <div className="w-full h-[60px] sm:h-[70px] lg:h-[80px] px-[15px] sm:px-[25px] lg:px-[40px] flex items-center justify-center sm:justify-start bg-white shadow-md">
+      <div className="w-full h-[100px] bg-white shadow-sm flex items-center px-6">
         <img
           src={logo}
           alt="logo"
-          className="h-[32px] sm:h-[36px] lg:h-[42px] object-contain"
+          className="h-[80px] sm:h-[90px] lg:h-[100px] w-auto object-contain"
         />
       </div>
 
